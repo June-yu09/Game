@@ -29,7 +29,7 @@ character_y_pos = screen_height - character_height -stage_height
 
 character_to_x = 0
 
-character_speed = 0.3
+character_speed = 1
 
 weapon = pygame.image.load(os.path.join(image_path, "weapon.png"))
 weapon_size = weapon.get_rect().size
@@ -86,18 +86,18 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_LEFT:
-            character_to_x -= character_speed
-        elif event.key == pygame.K_RIGHT:
-            character_to_x += character_speed
-        elif event.key == pygame.K_SPACE:
-            weapon_x_pos = character_x_pos + character_width/2 -weapon_width/2
-            weapon_y_pos = character_y_pos
-            weapons.append([weapon_x_pos, weapon_y_pos])
-    if event.type == pygame.KEYUP:
-        if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-            character_to_x = 0
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                character_to_x -= character_speed
+            elif event.key == pygame.K_RIGHT:
+                character_to_x += character_speed
+            elif event.key == pygame.K_SPACE:
+                weapon_x_pos = character_x_pos + character_width/2 -weapon_width/2
+                weapon_y_pos = character_y_pos
+                weapons.append([weapon_x_pos, weapon_y_pos])
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                character_to_x = 0
         
     character_x_pos += character_to_x
 
